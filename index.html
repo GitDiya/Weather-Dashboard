@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Dashboard</h1>
+        <form method="POST">
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <button type="submit">Get Weather</button>
+        </form>
+
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% elif weather_data %}
+        <div class="weather-info">
+            <h2>{{ weather_data.city }}</h2>
+            <p>Temperature: {{ weather_data.temperature }}°C</p>
+            <p>Humidity: {{ weather_data.humidity }}%</p>
+            <p>Condition: {{ weather_data.condition }}</p>
+            <img src="https://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=22.5769&lon=88.4676&zoom=5" alt="https://c.sat.owm.io/vane/2.0/weather/TA2/6/48/26?appid=9de243494c0b295cca9337e1e96b00e2&fill_bound=true">
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
